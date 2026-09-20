@@ -28,7 +28,9 @@
       "includeLogsCount": 50
     }
   },
-  "include": [],
+  "include": [
+    "./src/packages/core"
+  ],
   "ignore": {
     "useGitignore": true,
     "useDotIgnore": true,
