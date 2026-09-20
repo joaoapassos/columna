@@ -1,4 +1,4 @@
-import { InvalidIdError } from "./errors";
+import { IdInvalidError } from "./errors";
 
 /**
  * Classe base para identificadores de domínio imutáveis.
@@ -21,10 +21,10 @@ export abstract class Id {
      * se existe conteúdo; o valor original recebido é preservado.
      *
      * @param value Valor textual do identificador.
-     * @throws {InvalidIdError} Quando o valor é vazio ou contém somente espaços.
+     * @throws {IdInvalidError} Quando o valor é vazio ou contém somente espaços.
      */
     protected constructor(value: string){
-        if(!value.trim()) throw new InvalidIdError();
+        if(!value.trim()) throw new IdInvalidError();
 
         this.value = value;
     }

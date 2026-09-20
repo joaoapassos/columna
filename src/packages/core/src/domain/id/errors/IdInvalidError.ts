@@ -3,7 +3,7 @@ import { DomainError } from "../../../errors";
 /**
  * Erro de domínio lançado ao tentar criar um identificador sem conteúdo.
  */
-export class InvalidIdError extends DomainError {
+export class IdInvalidError extends DomainError {
     /**
      * Cria o erro associado a um valor inválido de identificador.
      *
