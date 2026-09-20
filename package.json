@@ -21,6 +21,7 @@
   "packageManager": "pnpm@12.4.2",
   "type": "module",
   "devDependencies": {
+    "@biomejs/biome": "2.5.14",
     "typescript": "^7.0.2"
   }
 }
