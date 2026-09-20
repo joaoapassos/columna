@@ -98,13 +98,28 @@ export class Money implements MoneyType{
 	}
 
 	/**
+	 * Soma dois valores monetários de mesma moeda.
+	 *
+	 * Esta é a forma estática equivalente a `initial.add(other)` e preserva a
+	 * imutabilidade dos dois valores recebidos.
+	 *
+	 * @param initial Valor monetário inicial da operação.
+	 * @param other Valor monetário a ser somado.
+	 * @returns Um novo valor com o resultado da soma.
+	 * @throws {CurrencyMismatchError} Quando os valores possuem moedas diferentes.
+	 */
+	public static add(initial: Money, other: Money): Money {
+		return initial.add(other);
+	}
+
+	/**
 	 * Subtrai outro valor de mesma moeda e retorna um novo `Money`.
 	 *
 	 * @param other Valor monetário a ser subtraído.
 	 * @returns Um novo valor com o resultado da subtração.
 	 * @throws {CurrencyMismatchError} Quando os valores possuem moedas diferentes.
 	 */
-	subtract(other: Money): Money {
+	public subtract(other: Money): Money {
 		this.ensureSameCurrency(other);
 
 		const result = subtract(this.toDinero(), other.toDinero());
@@ -113,15 +128,44 @@ export class Money implements MoneyType{
 	}
 
 	/**
+	 * Subtrai um valor monetário de outro de mesma moeda.
+	 *
+	 * Esta é a forma estática equivalente a `initial.subtract(other)` e mantém
+	 * a ordem dos operandos: `other` é subtraído de `initial`.
+	 *
+	 * @param initial Valor monetário do qual será feita a subtração.
+	 * @param other Valor monetário a ser subtraído.
+	 * @returns Um novo valor com o resultado da subtração.
+	 * @throws {CurrencyMismatchError} Quando os valores possuem moedas diferentes.
+	 */
+	public static subtract(initial: Money, other: Money): Money {
+		return initial.subtract(other);
+	}
+
+	/**
 	 * Multiplica o valor por um número inteiro sem modificar a instância atual.
 	 *
 	 * @param multiplier Fator inteiro aplicado ao valor em unidades mínimas.
 	 * @returns Um novo valor monetário com o resultado da multiplicação.
 	 */
-	multiply(multiplier: bigint): Money {
+	public multiply(multiplier: bigint): Money {
 		const result = multiply(this.toDinero(), multiplier);
 
 		return Money.fromMinor(result.toJSON().amount, this.currency);
+	}
+
+	/**
+	 * Multiplica um valor monetário por um número inteiro.
+	 *
+	 * Esta é a forma estática equivalente a `initial.multiply(multiplier)` e
+	 * retorna um novo `Money` sem modificar o valor inicial.
+	 *
+	 * @param initial Valor monetário inicial da operação.
+	 * @param multiplier Fator inteiro aplicado ao valor em unidades mínimas.
+	 * @returns Um novo valor monetário com o resultado da multiplicação.
+	 */
+	public static multiply(initial: Money, multiplier: bigint): Money {
+		return initial.multiply(multiplier);
 	}
 
 	/**
@@ -132,12 +176,25 @@ export class Money implements MoneyType{
 	 * @param other Valor monetário a ser comparado.
 	 * @returns `true` quando valor e moeda são equivalentes.
 	 */
-	equals(other: Money): boolean {
+	public equals(other: Money): boolean {
 		if (!this.currency.equals(other.currency)) {
 			return false;
 		}
 
 		return equal(this.toDinero(), other.toDinero());
+	}
+
+	/**
+	 * Compara dois valores monetários considerando valor e moeda.
+	 *
+	 * Esta é a forma estática equivalente a `initial.equals(other)`.
+	 *
+	 * @param initial Primeiro valor monetário da comparação.
+	 * @param other Segundo valor monetário da comparação.
+	 * @returns `true` quando os valores e suas moedas são equivalentes.
+	 */
+	public static equals(initial: Money, other: Money): boolean {
+		return initial.equals(other);
 	}
 
 	/**
@@ -147,10 +204,24 @@ export class Money implements MoneyType{
 	 * @returns `true` quando este valor é maior que o informado.
 	 * @throws {CurrencyMismatchError} Quando os valores possuem moedas diferentes.
 	 */
-	greaterThan(other: Money): boolean {
+	public greaterThan(other: Money): boolean {
 		this.ensureSameCurrency(other);
 
 		return greaterThan(this.toDinero(), other.toDinero());
+	}
+
+	/**
+	 * Verifica se um valor monetário é maior que outro de mesma moeda.
+	 *
+	 * Esta é a forma estática equivalente a `initial.greaterThan(other)`.
+	 *
+	 * @param initial Primeiro valor monetário da comparação.
+	 * @param other Segundo valor monetário da comparação.
+	 * @returns `true` quando `initial` é maior que `other`.
+	 * @throws {CurrencyMismatchError} Quando os valores possuem moedas diferentes.
+	 */
+	public static greaterThan(initial: Money, other: Money): boolean {
+		return initial.greaterThan(other);
 	}
 
 	/**
@@ -160,10 +231,24 @@ export class Money implements MoneyType{
 	 * @returns `true` quando este valor é menor que o informado.
 	 * @throws {CurrencyMismatchError} Quando os valores possuem moedas diferentes.
 	 */
-	lessThan(other: Money): boolean {
+	public lessThan(other: Money): boolean {
 		this.ensureSameCurrency(other);
 
 		return lessThan(this.toDinero(), other.toDinero());
+	}
+
+	/**
+	 * Verifica se um valor monetário é menor que outro de mesma moeda.
+	 *
+	 * Esta é a forma estática equivalente a `initial.lessThan(other)`.
+	 *
+	 * @param initial Primeiro valor monetário da comparação.
+	 * @param other Segundo valor monetário da comparação.
+	 * @returns `true` quando `initial` é menor que `other`.
+	 * @throws {CurrencyMismatchError} Quando os valores possuem moedas diferentes.
+	 */
+	public static lessThan(initial: Money, other: Money): boolean {
+		return initial.lessThan(other);
 	}
 
 	/**
@@ -174,7 +259,7 @@ export class Money implements MoneyType{
 	 *
 	 * @returns Representação decimal não localizada do valor.
 	 */
-	toDecimal(): string {
+	public toDecimal(): string {
 		return toDecimal(this.toDinero());
 	}
 
@@ -204,5 +289,47 @@ export class Money implements MoneyType{
 				other.currency.code,
 			);
 		}
+	}
+
+	/**
+	 * Verifica se o valor monetário é igual a zero.
+	 *
+	 * @returns `true` quando a quantidade em unidades mínimas é `0n`.
+	 */
+	public isZero(): boolean {
+		return this.amount === 0n;
+	}
+
+	/**
+	 * Verifica se um valor monetário é igual a zero.
+	 *
+	 * Esta é a forma estática equivalente a `value.isZero()`.
+	 *
+	 * @param value Valor monetário a ser verificado.
+	 * @returns `true` quando a quantidade em unidades mínimas é `0n`.
+	 */
+	public static isZero(value: Money): boolean {
+		return value.amount === 0n;
+	}
+
+	/**
+	 * Verifica se o valor monetário é positivo ou igual a zero.
+	 *
+	 * @returns `true` quando a quantidade em unidades mínimas não é negativa.
+	 */
+	public isPositive(): boolean {
+		return this.amount >= 0n;
+	}
+
+	/**
+	 * Verifica se um valor monetário é positivo ou igual a zero.
+	 *
+	 * Esta é a forma estática equivalente a `value.isPositive()`.
+	 *
+	 * @param value Valor monetário a ser verificado.
+	 * @returns `true` quando a quantidade em unidades mínimas não é negativa.
+	 */
+	public static isPositive(value: Money): boolean {
+		return value.amount >= 0n;
 	}
 }
