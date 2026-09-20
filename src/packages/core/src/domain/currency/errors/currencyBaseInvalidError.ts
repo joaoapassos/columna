@@ -1,4 +1,4 @@
-import { DomainError } from "../../shared/errors/DomainError";
+import { DomainError } from "../../../errors/DomainError";
 
 /**
  * Erro de domínio lançado quando a base de uma moeda não é positiva.

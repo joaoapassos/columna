@@ -1,3 +1,3 @@
-export * from "./currencyBaseInvalidError";
-export * from "./currencyCodeRequeredError";
-export * from "./currencyExponentInvalidError";
+export * from "./CurrencyBaseInvalidError";
+export * from "./CurrencyCodeRequeredError";
+export * from "./CurrencyExponentInvalidError";

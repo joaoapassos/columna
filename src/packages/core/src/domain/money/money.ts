@@ -9,7 +9,7 @@ import {
 	toDecimal,
 } from "dinero.js/bigint";
 
-import type { Currency } from "../currency/currency";
+import type { Currency } from "../currency/Currency";
 import { CurrencyMismatchError } from "./errors";
 
 /**
