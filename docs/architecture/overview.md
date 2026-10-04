@@ -27,7 +27,7 @@ O core deve permanecer independente de Expo, React Native, Electron e APIs de in
 
 ## Configurações e limites atuais
 
-`@columna/configs` fornece configurações compartilhadas. O core estende `tsconfig.package.json`, compila `src` para `dist` e expõe JavaScript ESM e declarações de tipos pelo campo `exports`.
+`@columna/typescript-config` fornece configurações compartilhadas. O core estende `tsconfig.package.json`, compila `src` para `dist` e expõe JavaScript ESM e declarações de tipos pelo campo `exports`.
 
 Mobile e desktop possuem apenas `package.json`, sem código ou scripts. Expo e Electron são possibilidades futuras, sem integração atual. Ainda não foi definida uma arquitetura completa de DDD ou Hexagonal.
 
