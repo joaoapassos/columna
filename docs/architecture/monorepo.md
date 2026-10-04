@@ -17,8 +17,8 @@ packages:
 | --- | --- | --- |
 | `src/apps/mobile` | `@columna/mobile` | Futura aplicação mobile; apenas manifesto |
 | `src/apps/desktop` | `@columna/desktop` | Futura aplicação desktop; apenas manifesto |
-| `src/packages/core` | `@columna/core` | Código compartilhado; exportação de exemplo |
-| `configs/typescript` | `@columna/typescript-config` | Configurações TypeScript compartilhadas |
+| `src/packages/core` | `@columna/packages` | Código compartilhado; exportação de exemplo |
+| `configs/typescript` | `@columna/configs` | Configurações TypeScript compartilhadas |
 
 Os manifestos atuais são privados e usam o namespace `@columna/*`. Novos workspaces devem ter seu próprio `package.json` dentro de uma dessas áreas.
 

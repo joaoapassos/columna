@@ -63,6 +63,6 @@ Esse último exemplo é uma alteração futura, não uma etapa necessária da in
 
 Crie novos packages compartilhados em `src/packages/<nome>` e novas aplicações em `src/apps/<nome>`, com seu próprio `package.json` e nome `@columna/<nome>`. Essas pastas já são abrangidas pelos padrões do workspace. Configurações reutilizáveis pertencem a `configs/<nome>`.
 
-Para um novo package TypeScript, declare `@columna/typescript-config` como dependência de desenvolvimento e estenda a configuração apropriada. Defina os caminhos de entrada e saída e os scripts no próprio package, tomando o core como referência.
+Para um novo package TypeScript, declare `@columna/configs` como dependência de desenvolvimento e estenda a configuração apropriada. Defina os caminhos de entrada e saída e os scripts no próprio package, tomando o core como referência.
 
 Mantenha dependências de plataforma na aplicação que as utiliza e respeite a [independência do core](../architecture/overview.md).
